@@ -12,31 +12,32 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-
 def contact(request):
 
     if request.method == 'POST':
         form = ContactFormu(request.POST)
         if form.is_valid():
-            data = ContactFormu()
+            data = ContactFormMessage()
             data.name = form.cleaned_data['name']
             data.email = form.cleaned_data['email']
             data.subject = form.cleaned_data['subject']
             data.message = form.cleaned_data['message']
+            data.ip = request.META.get('REMOTE_ADDR')
             data.save()
-            messages.success(request, "Mesajınız gönderilmiştir. Teşekkürler ")
-            return HttpResponseRedirect ('/contact')
-
+        #    messages.success(request, "mesajınız alındı")
+            return HttpResponseRedirect('/contact')
 
     setting = Setting.objects.get(pk=1)
     form = ContactFormu()
-    context = {'setting': setting, 'form': form}
+    context = {'setting': setting, 'form':form}
     return render(request, 'contact.html', context)
+
 
 def aboutus(request):
     setting = Setting.objects.get(pk=1)
     context = {'setting': setting, 'page': 'aboutus'}
     return render(request, 'aboutus.html', context)
+
 
 def references(request):
     setting = Setting.objects.get(pk=1)

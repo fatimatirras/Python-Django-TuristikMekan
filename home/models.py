@@ -39,8 +39,10 @@ class Setting(models.Model):
 
 class ContactFormMessage(models.Model):
     STATUS = (
-        ('True', 'Evet'),
-        ('False', 'Hayır')
+        ('New', 'New'),
+        ('Read', 'Read'),
+        ('Closed', 'Closed'),
+
     )
     name = models.CharField(blank=True,max_length=20)
     email = models.CharField(blank=True, max_length=50)
@@ -53,15 +55,15 @@ class ContactFormMessage(models.Model):
     update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return self.name
 
 class ContactFormu(ModelForm):
     class Meta:
         model = ContactFormMessage
         fields = ['name', 'email', 'subject', 'message']
         widgets = {
-            'name'  : TextInput(attrs={'class': 'input', 'placeholder': 'Name & Surname'}),
-            'subject'  : TextInput(attrs={'class': 'input', 'placeholder': 'Subject'}),
+            'name': TextInput(attrs={'class': 'input', 'placeholder': 'Name & Surname'}),
+            'subject': TextInput(attrs={'class': 'input', 'placeholder': 'Subject'}),
             'email': TextInput(attrs={'class': 'input', 'placeholder': 'Email Address'}),
             'message': Textarea(attrs={'class': 'input', 'placeholder': 'Your Message', 'rows': '5'}),
         }
