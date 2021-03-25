@@ -1,0 +1,55 @@
+{% extends "homebase.html" %}
+
+{% block title %} About Us -{{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block topbar %}
+    {% include "topbar.html" %}
+{% endblock %}
+
+{% block content %}
+
+     <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">About Us</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">About Us</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div id="content">
+        <div class="container">
+          <section class="bar">
+            <div class="row">
+                  <div class="heading">
+                  <h2>About Company</h2>
+                </div>
+                {{ setting.aboutus|safe}}
+            </div>
+          </section>
+        </div>
+     </div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
