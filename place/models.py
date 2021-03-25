@@ -38,10 +38,11 @@ class Place(models.Model):
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE)     #category tablosuyla ilişkisi
     title = models.CharField(max_length=150)
-    keywords = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    keywords = models.CharField(blank=True, max_length=255)
+    description = models.CharField(blank=True, max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     detail = RichTextUploadingField()
+    slug = models.SlugField(blank=True, max_length=150)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     location = models.CharField(max_length=225)
