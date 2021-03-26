@@ -4,13 +4,16 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.models import Setting, ContactFormMessage, ContactFormu
-from place.models import Place
+from place.models import Place, Category
 
 
 def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Place.objects.all()[:4]
-    context = {'setting': setting, 'page': 'home', 'sliderdata':sliderdata}
+    category = Category.objects.all()
+
+
+    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderdata':sliderdata}
     return render(request, 'index.html', context)
 
 
@@ -26,7 +29,7 @@ def contact(request):
             data.message = form.cleaned_data['message']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
-        #    messages.success(request, "mesajınız alındı")
+         #   messages.success(request, "mesajınız alındı")
             return HttpResponseRedirect('/contact')
 
     setting = Setting.objects.get(pk=1)
