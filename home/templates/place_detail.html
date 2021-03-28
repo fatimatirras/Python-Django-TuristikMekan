@@ -1,0 +1,143 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ place.title }} {% endblock %}
+{% block keywords %} {{ place.keywords }} {% endblock %}
+{% block description %} {{ place.description }} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block topbar %}
+    {% include "topbar.html" %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">{{ place.title }}</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/category/{{ place.category_id }}/{{ place.category.slug }}">{{ place.category }}</a></li>
+                <li class="breadcrumb-item active">{{ place.title }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+         <div id="content">
+        <div class="container">
+          <div class="row bar">
+            <!-- LEFT COLUMN _________________________________________________________-->
+            <div class="col-lg-9">
+
+                <div id="productMain" class="row">
+                <div class="col-sm-6">
+                  <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+
+                    <div> <img src="{{ place.image.url}}" style="height: 540px" alt="" class="img-fluid"></div>
+
+                      {% for rs in images %}
+                    <div> <img src="{{ rs.image.url }}" style="height: 540px" alt="" class="img-fluid"></div>
+                      {% endfor %}
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="box">
+                    <form>
+                      <div class="sizes">
+                        <h3>{{ place.title}}</h3>
+                        <select class="bs-select">
+                          <option value="small">Small</option>
+                          <option value="medium">Medium</option>
+                          <option value="large">Large</option>
+                          <option value="x-large">X Large</option>
+                        </select>
+                      </div>
+                      <p class="price">$124.00</p>
+                      <p class="text-center">
+                        <button type="submit" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default"><i class="fa fa-heart-o"></i></button>
+                      </p>
+                    </form>
+                  </div>
+                  <div data-slider-id="1" class="owl-thumbs">
+                       {% for rs in images %}
+                    <button class="owl-thumb-item"><img src="{{ rs.image.url }}" alt="" style="height: 75px" class="img-fluid"></button>
+                       {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+
+              <div id="details" class="box mb-4 mt-4">
+                <p></p>
+                   <h4>Location </h4>
+                <p>   {{ place.location }} / {{ place.city }} / {{ place.country }}</p>
+
+                 <h4>PLace Description</h4>
+                <p>  {{ place.description }}</p>
+                <h4>PLace Details</h4>
+                <blockquote class="blockquote">
+                  <p class="mb-0"><em>{{ place.detail|safe }}</em></p>
+                </blockquote>
+              </div>
+
+
+
+            </div>
+            <div class="col-lg-3">
+              <!-- MENUS AND FILTERS-->
+               <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading">
+                  <h3 class="h4 panel-title">Categories</h3>
+                </div>
+
+                <div class="panel-body">
+                  <ul class="nav nav-pills flex-column text-sm category-menu">
+                       {% load mptt_tags %}
+                      <ul class="nav nav-pills flex-column">
+                            {% load mptt_tags %}
+                          {% recursetree category %}
+                           <li><a class="nav-item" >{{ node.title }}</a>
+                                <ul class="list-unstyled">
+                                  {% if not node.is_leaf_node %}
+                                    {% for i in node.children.all %}
+                              <li><a class="nav-link" href="/category/{{ i.id }}/{{ i.slug }}">{{ i.title }} </a></li>
+                              {% endfor %}
+
+                        {% endif %}
+                         {% endrecursetree %}
+                      </ul>
+                    </li>
+                  </ul>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
