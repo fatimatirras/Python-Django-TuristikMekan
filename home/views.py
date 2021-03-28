@@ -51,3 +51,11 @@ def references(request):
     category = Category.objects.all()
     context = {'setting': setting, 'page': 'references', 'category': category}
     return render(request, 'references.html', context)
+
+def category_places(request, id, slug):
+    setting = Setting.objects.get(pk=1)
+    categorydata = Category.objects.get(pk=id)
+    places = Place.objects.filter(category_id=id, status='True')
+    category = Category.objects.all()
+    context = {'setting': setting, 'places': places, 'category': category, 'categorydata': categorydata, }
+    return render(request, 'places.html', context)
