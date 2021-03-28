@@ -11,9 +11,16 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Place.objects.all()[:4]
     category = Category.objects.all()
+    popularplaces = Place.objects.all()[:4]
+    lastplaces = Place.objects.all().order_by('-id')[:10]
+    randomplaces = Place.objects.all().order_by('?')[:12]
 
 
-    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderdata':sliderdata}
+
+    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderdata':sliderdata,
+               'popularplaces': popularplaces,
+               'lastplaces': lastplaces,
+               'randomplaces': randomplaces, }
     return render(request, 'index.html', context)
 
 
