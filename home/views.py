@@ -34,17 +34,20 @@ def contact(request):
 
     setting = Setting.objects.get(pk=1)
     form = ContactFormu()
-    context = {'setting': setting, 'form':form}
+    category = Category.objects.all()
+    context = {'setting': setting, 'form': form, 'category': category}
     return render(request, 'contact.html', context)
 
 
 def aboutus(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page': 'aboutus'}
+    category = Category.objects.all()
+    context = {'setting': setting, 'page': 'aboutus', 'category': category}
     return render(request, 'aboutus.html', context)
 
 
 def references(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page': 'references'}
+    category = Category.objects.all()
+    context = {'setting': setting, 'page': 'references', 'category': category}
     return render(request, 'references.html', context)
