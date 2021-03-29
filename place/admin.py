@@ -1,12 +1,11 @@
-from importlib._common import _
-
 from django.contrib import admin
 
 # Register your models here.
 from django.utils.html import format_html
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
-from place.models import Category, Place, Images
+from place.models import Category, Place, Images, Comment
+
 
 class PlaceImageInline(admin.TabularInline):
     model = Images
@@ -25,6 +24,7 @@ class PlaceAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
     list_filter = ['status', 'category']
     inlines = [PlaceImageInline]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class ImagesAdmin(admin.ModelAdmin):
@@ -37,6 +37,7 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     list_display = ('tree_actions', 'indented_title',
                     'related_products_count', 'related_products_cumulative_count')
     list_display_links = ('indented_title',)
+    prepopulated_fields = {'slug': ('title',)}
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -66,6 +67,12 @@ class CategoryAdmin2(DraggableMPTTAdmin):
     related_products_cumulative_count.short_description = 'Related places (in tree)'
 
 
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'comment', 'place', 'user', 'status']
+    list_filter = ['status']
+
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Place, PlaceAdmin)
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(Comment, CommentAdmin)

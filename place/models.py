@@ -1,6 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from django.forms import ModelForm
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
 from mptt.fields import TreeForeignKey
@@ -19,7 +22,7 @@ class Category(MPTTModel):
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
-    slug = models.SlugField()
+    slug = models.SlugField(null=False, unique=True)
     parent = TreeForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -42,6 +45,10 @@ class Category(MPTTModel):
     image_tag.short_description = 'Image'
 
 
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug':self.slug})
+
+
 class Place(models.Model):
     STATUS = (
         ('True', 'Evet'),
@@ -53,7 +60,7 @@ class Place(models.Model):
     description = models.CharField(blank=True, max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     detail = RichTextUploadingField()
-    slug = models.SlugField(blank=True, max_length=150)
+    slug = models.SlugField(null=False, unique=True)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     location = models.CharField(max_length=225)
@@ -68,6 +75,9 @@ class Place(models.Model):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
 
+    def get_absolute_url(self):
+        return reverse('place_detail', kwargs={'slug': self.slug})
+
 class Images(models.Model):
     place = models.ForeignKey(Place,on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank=True)
@@ -80,3 +90,26 @@ class Images(models.Model):
 
     image_tag.short_description = 'Image'
 
+class Comment(models.Model):
+    STATUS = (
+        ('New', 'Yeni'),
+        ('True', 'Evet'),
+        ('False', 'Hayır')
+    )
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.CharField( max_length=50)
+    comment = models.TextField( max_length=250)
+    rate= models.IntegerField(blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    ip = models.CharField(blank=True, max_length=20)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['subject', 'comment', 'rate']

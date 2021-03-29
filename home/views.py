@@ -1,10 +1,12 @@
-from django.core.checks import messages
+from ckeditor_uploader.forms import SearchForm
+from django.contrib import messages
+import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
 from home.models import Setting, ContactFormMessage, ContactFormu
-from place.models import Place, Category, Images
+from place.models import Place, Category, Images, Comment
 
 
 def index(request):
@@ -36,7 +38,7 @@ def contact(request):
             data.message = form.cleaned_data['message']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
-         #   messages.success(request, "mesajınız alındı")
+            messages.success(request, "mesajınız alındı")
             return HttpResponseRedirect('/contact')
 
     setting = Setting.objects.get(pk=1)
@@ -71,5 +73,43 @@ def place_detail(request, id, slug):
     category = Category.objects.all()
     place = Place.objects.get(pk=id)
     images = Images.objects.filter(place_id=id)
-    context = {'category': category, 'place': place, 'images': images, }
+    comments = Comment.objects.filter(place_id=id, status='True')
+    context = {'category': category, 'place': place, 'images': images, 'comments': comments, }
     return render(request, 'place_detail.html', context)
+
+
+
+def place_search(request):
+
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.all()
+            query = form.cleaned_data['query']
+            catid = form.cleaned_data['catid']
+            if catid == 0:
+                places = Place.objects.filter(title__icontains=query)
+            else:
+
+                places = Place.objects.filter(title__icontains=query, category_id=catid)
+
+            context = {'places': places,
+                       'category': category,
+                       }
+            return render(request, 'place_search.html', context)
+    return HttpResponseRedirect('/')
+
+def place_search_auto(request):
+  if request.is_ajax():
+    q = request.GET.get('term', '')
+    places = Place.objects.filter(city__icontains=q)
+    results = []
+    for rs in places:
+      place_json = {}
+      place_json = rs.title
+      results.append(place_json)
+    data = json.dumps(results)
+  else:
+    data = 'fail'
+  mimetype = 'application/json'
+  return HttpResponse(data, mimetype)
