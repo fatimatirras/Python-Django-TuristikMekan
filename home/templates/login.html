@@ -1,0 +1,108 @@
+{% extends "homebase.html" %}
+
+{% block title %} Login -{{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block topbar %}
+    {% include "topbar.html" %}
+{% endblock %}
+
+{% block content %}
+
+ <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">New Account / Login</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">New Account / Login</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="box">
+                <h2 class="text-uppercase">New account</h2>
+                <p class="lead">Not our registered customer yet?</p>
+                <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
+                <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                  <hr>
+                <form action="customer-orders.html" method="get">
+                  <div class="form-group">
+                    <label for="name-login">Name</label>
+                    <input id="name-login" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="email-login">Email</label>
+                    <input id="email-login" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="password-login">Password</label>
+                    <input id="password-login" type="password" class="form-control">
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-user-md"></i> Register</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="box">
+                <h2 class="text-uppercase">Login</h2>
+                <p class="lead">Already have you account?</p>
+
+                       {% if messages %}
+                     {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                          {{ message }}
+                         </div>
+                     {% endfor %}
+                   {% endif %}
+
+                <hr>
+                <form section="" method="post">
+                    {% csrf_token %}
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="username" name="username" type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" class="form-control">
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+

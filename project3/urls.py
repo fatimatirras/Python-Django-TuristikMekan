@@ -34,6 +34,8 @@ urlpatterns = [
     path('place/<int:id>/<slug:slug>/', views.place_detail, name='place_detail'),
     path('search/', views.place_search, name='place_search'),
     path('search_auto/', views.place_search_auto, name='place_search_auto'),
+    path('logout/', views.logout_view, name='logout_view'),
+    path('login/', views.login_view, name='login_view'),
 
 ]
 
