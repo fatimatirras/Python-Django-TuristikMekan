@@ -135,3 +135,11 @@ def login_view(request):
     category = Category.objects.all()
     context = {'category': category, }
     return render(request, 'login.html', context)
+
+
+def signup_view(request):
+
+
+    category = Category.objects.all()
+    context = {'category': category, }
+    return render(request, 'signup.html', context)
