@@ -72,10 +72,10 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                 </ul>
                 {% if user.id is not None %}
-                    <ul>
-                   <li><h4><a href="/" class="d-block">{{ user.first_name }}</a></h4></li>
-                   <li><a href="/logout/"  class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Logout </span></a></li>
-                    </ul>
+
+                    {% block head %}<link rel='shortcut icon' type='image/x-icon' href='{{ request.user.profile.image.url }}' />{% endblock %}<h4><a href="/user" class="d-block">{{ user.first_name }}</a></h4>
+
+
                    {% else %}
                  <div class="login"><a href="/login/"  class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a><a href="/signup/" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a></div>
                 {% endif %}
