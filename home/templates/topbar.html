@@ -73,7 +73,9 @@
                 </ul>
                 {% if user.id is not None %}
 
-                    {% block head %}<link rel='shortcut icon' type='image/x-icon' href='{{ request.user.profile.image.url }}' />{% endblock %}<h4><a href="/user" class="d-block">{{ user.first_name }}</a></h4>
+                   <h4 class="list-inline-item"><a href="/user" >
+                                <img src="{{ user.userprofile.image.url }}" style="border-radius: 45px" height="30">
+                                {{ user.first_name }}</a></h4>
 
 
                    {% else %}

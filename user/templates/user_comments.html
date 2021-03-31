@@ -19,12 +19,12 @@
         <div class="container">
           <div class="row d-flex align-items-center flex-wrap">
             <div class="col-md-7">
-              <h1 class="h2">User Password</h1>
+              <h1 class="h2">User Comments</h1>
             </div>
             <div class="col-md-5">
               <ul class="breadcrumb d-flex justify-content-end">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">User Password</li>
+                <li class="breadcrumb-item active">User Comments</li>
               </ul>
             </div>
           </div>
@@ -33,52 +33,45 @@
       <div id="content">
         <div class="container">
           <div class="row bar">
-
-
-                       <div class="col-lg-9">
-                        <div class="box">
-
-                            <h2>CHANGE PASSWORD</h2>
-                        <hr>
-                        {% if messages %}
+                 <div class="col-lg-9">
+                 <h1><a>Comments</a></h1>
+                    <div class="table-responsive">
+                                <table class="table">
+                            <thead>
+                            {% if messages %}
                                 {% for message in messages %}
-                                    <div id=" sendmessage" style="color: #d43f3a; font-size: medium" class="alert alert-{{ message.tags }}" ROLE="alert">
-                                        {{ message|safe }}
+                                    <div id=" sendmessage " class="alert alert-{{ message.tags }}" ROLE="alert">
+                                        {{ message }}
                                     </div>
                                 {% endfor %}
                             {% endif %}
-                            <form method="post">{% csrf_token %}
-
-                                {% for field in form  %}
-
-                                    <div class="form-group row">
-                                    <div class="col-form-label col-sm-2 required">
-                                        {{ field.label_tag }}
-                                    </div>
-                                        <div class="col-sm-10">
-                                            {{ field }}
-                                        </div>
-                                    {% if field.help_text %}
-                                        <small style="color: gray">{{ field.help_text }}</small>
-                                    {% endif %}
-                                    {% for error in field.errors %}
-                                        <p style="color: red">{{ error }}</p>
-                                        {% endfor %}
-
-                                    </div>
-
-                                {% endfor %}
-
-                                <div class="col-md-12 text-center">
-                                    <button class="btn btn-primary" type="submit">Save</button>
-                                </div>
-                            </form>
-
+                            <tr>
+                                <th>Place</th>
+                                <th>Rate</th>
+                                <th>Subject</th>
+                                <th>Comment</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Detail</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for comment in comments %}
+                                <tr>
+                                    <td nowrap> <a href="/place/{{ comment.place.id }}/{{ comment.place.slug }}">{{ comment.place.title }}</a></td>
+                                    <td>{{ comment.rate }}</td>
+                                    <td>{{ comment.subject }}</td>
+                                    <td>{{ comment.comment }}</td>
+                                    <td>{{ comment.status }}</td>
+                                    <td>{{ comment.create_at}}</td>
+                                    <td nowrap> <a class="btn btn-danger" href="/user/deletecomment/{{ comment.id }}" onclick="return confirm('Will be delete ! Are you sure?')">Delete</a></td>
+                        </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                         </div>
-                    </div>
 
-
-
+                </div>
 
             <div class="col-lg-3 mt-4 mt-lg-0">
               <!-- CUSTOMER MENU -->
@@ -90,7 +83,7 @@
                   <ul class="nav nav-pills flex-column text-sm">
                     <li class="nav-item"><a href="customer-orders.html" class="nav-link active"><i class="fa fa-list"></i> My orders</a></li>
                     <li class="nav-item"><a href="customer-wishlist.html" class="nav-link"><i class="fa fa-heart"></i> My wishlist</a></li>
-                    <li class="nav-item"><a href="/comments " class="nav-link"><i class="fa fa-comment"></i> My comments</a></li>
+                    <li class="nav-item"><a href="/user/comments " class="nav-link"><i class="fa fa-comment"></i> My comments</a></li>
                     <li class="nav-item"><a href="/user" class="nav-link"><i class="fa fa-user"></i> My account</a></li>
                     <li class="nav-item"><a href="/logout/" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></li>
                   </ul>
@@ -100,14 +93,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
 
 {% endblock %}
 
