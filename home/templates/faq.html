@@ -1,0 +1,101 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sıkça sorulan sorular {% endblock %}
+{% block keywords %}  {% endblock %}
+{% block description %}  {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block topbar %}
+    {% include "topbar.html" %}
+{% endblock %}
+
+{% block content %}
+
+     <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">FAQ</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">FAQ</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <div id="content">
+        <div class="container">
+          <div class="row bar">
+            <div class="col-md-9">
+              <section>
+                <p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <div id="accordion" role="tablist">
+                     {%  for rs in faq %}
+                                    {% if rs.orderno == 1 %}
+                  <div class="card card-primary">
+                    <div id="headingOne" role="tab" class="card-header">
+                      <h5 class="mb-0 mt-0"><a data-toggle="collapse" href="#xx{{ rs.id }}" aria-expanded="true" aria-controls="xx{{ rs.id }}">{{ rs.orderno }}.{{ rs.question }}</a></h5>
+                    </div>
+                    <div id="xx{{ rs.id }}" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion" class="collapse show">
+                      <div class="card-body">
+                        <p>{{ rs.answer }}</p>
+
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="card card-primary">
+                    <div id="headingTwo" role="tab" class="card-header">
+                      <h5 class="mb-0 mt-0"><a data-toggle="collapse" href="#xx{{ rs.id }}" aria-expanded="false" aria-controls="xx{{ rs.id }}" class="collapsed">{{ rs.orderno }}.{{ rs.question }}</a></h5>
+                    </div>
+                    <div id="xx{{ rs.id }}" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion" class="collapse">
+                      <div class="card-body">{{ rs.answer }}</div>
+                    </div>
+                  </div>
+                           {% endif %}
+
+                                {% endfor %}
+
+
+                </div>
+              </section>
+            </div>
+            <div class="col-sm-3">
+              <!-- PAGES MENU -->
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading">
+                  <h3 class="h4 panel-title">Pages</h3>
+                </div>
+                <div class="panel-body">
+                  <ul class="nav nav-pills flex-column text-sm">
+                    <li class="nav-item"><a href="/aboutus" class="nav-link">About Us page</a></li>
+                    <li class="nav-item"><a href="/contact" class="nav-link">Contact page</a></li>
+                    <li class="nav-item"><a href="/sss" class="nav-link">FAQ</a></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
