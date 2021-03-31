@@ -5,7 +5,7 @@
 {% block description %} {{ setting.description }} {% endblock %}
 
 {% block head %}
-    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
 {% endblock %}
 
 
@@ -15,47 +15,50 @@
 
 {% block content %}
 
-   <div id="heading-breadcrumbs">
+    <div id="heading-breadcrumbs">
         <div class="container">
-          <div class="row d-flex align-items-center flex-wrap">
-            <div class="col-md-7">
-              <h1 class="h2">User Profile</h1>
+            <div class="row d-flex align-items-center flex-wrap">
+                <div class="col-md-7">
+                    <h1 class="h2">User Profile</h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb d-flex justify-content-end">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">User Profile</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-5">
-              <ul class="breadcrumb d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">User Profile</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
-      <div id="content">
+    </div>
+    <div id="content">
         <div class="container">
-          <div class="row bar">
-
-              {% include "user_panel.html" %}
-
-            <div class="col-lg-3 mt-4 mt-lg-0">
-              <!-- CUSTOMER MENU -->
-              <div class="panel panel-default sidebar-menu">
-                <div class="panel-heading">
-                  <h3 class="h4 panel-title">Customer section</h3>
+            <div class="row bar">
+                {% include "user_panel.html" %}
+                <div class="col-lg-3 mt-4 mt-lg-0">
+                    <!-- CUSTOMER MENU -->
+                    <div class="panel panel-default sidebar-menu">
+                        <div class="panel-heading">
+                            <h3 class="h4 panel-title">Customer section</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-pills flex-column text-sm">
+                                <li class="nav-item"><a href="customer-orders.html" class="nav-link active"><i
+                                        class="fa fa-list"></i> My orders</a></li>
+                                <li class="nav-item"><a href="customer-wishlist.html" class="nav-link"><i
+                                        class="fa fa-heart"></i> My wishlist</a></li>
+                                <li class="nav-item"><a href="/user/comments " class="nav-link"><i
+                                        class="fa fa-comment"></i> My comments</a></li>
+                                <li class="nav-item"><a href="/user " class="nav-link"><i class="fa fa-user"></i> My
+                                    account</a></li>
+                                <li class="nav-item"><a href="/logout/" class="nav-link"><i class="fa fa-sign-out"></i>
+                                    Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                  <ul class="nav nav-pills flex-column text-sm">
-                    <li class="nav-item"><a href="customer-orders.html" class="nav-link active"><i class="fa fa-list"></i> My orders</a></li>
-                    <li class="nav-item"><a href="customer-wishlist.html" class="nav-link"><i class="fa fa-heart"></i> My wishlist</a></li>
-                    <li class="nav-item"><a href="/user/comments " class="nav-link"><i class="fa fa-comment"></i> My comments</a></li>
-                    <li class="nav-item"><a href="/user " class="nav-link"><i class="fa fa-user"></i> My account</a></li>
-                    <li class="nav-item"><a href="/logout/" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></li>
-                  </ul>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
 
 

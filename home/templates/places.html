@@ -5,7 +5,7 @@
 {% block description %} {{ categorydata.description }} {% endblock %}
 
 {% block head %}
-    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
 {% endblock %}
 
 
@@ -15,106 +15,98 @@
 
 {% block content %}
 
-     <div id="heading-breadcrumbs">
+    <div id="heading-breadcrumbs">
         <div class="container">
-          <div class="row d-flex align-items-center flex-wrap">
-            <div class="col-md-7">
-              <h1 class="h2">{{ categorydata.title }} </h1>
+            <div class="row d-flex align-items-center flex-wrap">
+                <div class="col-md-7">
+                    <h1 class="h2">{{ categorydata.title }} </h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb d-flex justify-content-end">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Places</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-5">
-              <ul class="breadcrumb d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">Places</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
-
-         <div id="content">
+    </div>
+    <div id="content">
         <div class="container">
-          <div class="row bar">
-            <div class="col-md-9">
-              <p class="text-muted lead">The most beautiful places to visit</p>
-
-
-
-              <div class="row products products-big">
-                      {% for rs in places %}
-                <div class="col-lg-4 col-md-6">
-                  <div class="product">
-                    <div class="image"><a href="/place/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt="" class="img-fluid image1"></a></div>
-                    <div class="text">
-                      <h3 class="h5"><a href="/place/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h3>
-                      <p class="price">
-                          {{ rs.location }}
-                      </p>
+            <div class="row bar">
+                <div class="col-md-9">
+                    <p class="text-muted lead">The most beautiful places to visit</p>
+                    <div class="row products products-big">
+                        {% for rs in places %}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product">
+                                    <div class="image"><a href="/place/{{ rs.id }}/{{ rs.slug }}"><img
+                                            src="{{ rs.image.url }}" alt="" class="img-fluid image1"></a></div>
+                                    <div class="text">
+                                        <h3 class="h5"><a href="/place/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a>
+                                        </h3>
+                                        <p class="price">
+                                            {{ rs.location }}
+                                        </p>
+                                    </div>
+                                    <div class="ribbon-holder">
+                                        <div class="ribbon sale">{{ rs.city }}</div>
+                                        <div class="ribbon new">{{ rs.country }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                    <div class="ribbon-holder">
-                      <div class="ribbon sale">{{ rs.city }}</div>
-                      <div class="ribbon new">{{ rs.country }}</div>
+                    <div class="row">
+                        <div class="col-md-12 banner mb-small"><a href="#"><img src="img/banner2.jpg" alt="" class="img-fluid"></a></div>
                     </div>
-                  </div>
+                    <div class="pages">
+                        <p class="loadMore text-center"><a href="#" class="btn btn-template-outlined"><i
+                                class="fa fa-chevron-down"></i> Load more</a></p>
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                            <ul class="pagination">
+                                <li class="page-item"><a href="#" class="page-link"> <i
+                                        class="fa fa-angle-double-left"></i></a></li>
+                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                <li class="page-item"><a href="#" class="page-link"><i
+                                        class="fa fa-angle-double-right"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-                   {% endfor %}
-              </div>
-
-
-
-
-
-              <div class="row">
-                <div class="col-md-12 banner mb-small"><a href="#"><img src="img/banner2.jpg" alt="" class="img-fluid"></a></div>
-              </div>
-              <div class="pages">
-                <p class="loadMore text-center"><a href="#" class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i> Load more</a></p>
-                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                  <ul class="pagination">
-                    <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-left"></i></a></li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
-                  </ul>
-                </nav>
-              </div>
+                <div class="col-md-3">
+                    <!-- MENUS AND FILTERS-->
+                    <div class="panel panel-default sidebar-menu">
+                        <div class="panel-heading">
+                            <h3 class="h4 panel-title">Categories</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-pills flex-column text-sm category-menu">
+                                {% load mptt_tags %}
+                                <ul class="nav nav-pills flex-column">
+                                    {% load mptt_tags %}
+                                    {% recursetree category %}
+                                        <li><a class="nav-item">{{ node.title }}</a>
+                                        <ul class="list-unstyled">
+                                        {% if not node.is_leaf_node %}
+                                            {% for i in node.children.all %}
+                                                <li><a class="nav-link"
+                                                       href="/category/{{ i.id }}/{{ i.slug }}">{{ i.title }} </a></li>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endrecursetree %}
+                                    </ul>
+                                    </li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-              <!-- MENUS AND FILTERS-->
-              <div class="panel panel-default sidebar-menu">
-                <div class="panel-heading">
-                  <h3 class="h4 panel-title">Categories</h3>
-                </div>
-
-                <div class="panel-body">
-                  <ul class="nav nav-pills flex-column text-sm category-menu">
-                       {% load mptt_tags %}
-                      <ul class="nav nav-pills flex-column">
-                            {% load mptt_tags %}
-                          {% recursetree category %}
-                           <li><a class="nav-item" >{{ node.title }}</a>
-                                <ul class="list-unstyled">
-                                  {% if not node.is_leaf_node %}
-                                    {% for i in node.children.all %}
-                              <li><a class="nav-link" href="/category/{{ i.id }}/{{ i.slug }}">{{ i.title }} </a></li>
-                              {% endfor %}
-
-                        {% endif %}
-                         {% endrecursetree %}
-                      </ul>
-                    </li>
-                  </ul>
-                  </ul>
-                </div>
-              </div>
-            </div>
-      </div>
-
         </div>
-         </div>
-
-
+    </div>
 {% endblock %}
 

@@ -5,7 +5,7 @@
 {% block description %} {{ setting.description }} {% endblock %}
 
 {% block head %}
-    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
 {% endblock %}
 
 
@@ -14,42 +14,33 @@
 {% endblock %}
 
 {% block content %}
-
-     <div id="heading-breadcrumbs">
+    <div id="heading-breadcrumbs">
         <div class="container">
-          <div class="row d-flex align-items-center flex-wrap">
-            <div class="col-md-7">
-              <h1 class="h2">References</h1>
-            </div>
-            <div class="col-md-5">
-              <ul class="breadcrumb d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">References</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-     <div id="content">
-        <div class="container">
-          <section class="bar">
-            <div class="row">
-                  <div class="heading">
-                  <h2>About References</h2>
+            <div class="row d-flex align-items-center flex-wrap">
+                <div class="col-md-7">
+                    <h1 class="h2">References</h1>
                 </div>
-                {{ setting.references|safe}}
+                <div class="col-md-5">
+                    <ul class="breadcrumb d-flex justify-content-end">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">References</li>
+                    </ul>
+                </div>
             </div>
-          </section>
         </div>
-     </div>
-
-
-
-
-
-
-
+    </div>
+    <div id="content">
+        <div class="container">
+            <section class="bar">
+                <div class="row">
+                    <div class="heading">
+                        <h2>About References</h2>
+                    </div>
+                    {{ setting.references|safe }}
+                </div>
+            </section>
+        </div>
+    </div>
 
 {% endblock %}
 

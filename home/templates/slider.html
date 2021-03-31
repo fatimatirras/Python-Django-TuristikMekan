@@ -1,32 +1,30 @@
-    {% load static %}
-    <section style="background: url({% static 'img/kapadokya.png'%}) center center repeat; background-size: cover;" class="bar background-white relative-positioned">
-        <div class="container">
-          <!-- Carousel Start-->
-          <div class="home-carousel">
+{% load static %}
+<section style="background: url({% static 'img/kapadokya.png' %}) center center repeat; background-size: cover;"
+         class="bar background-white relative-positioned">
+    <div class="container">
+        <!-- Carousel Start-->
+        <div class="home-carousel">
             <div class="dark-mask mask-primary"></div>
             <div class="container">
-              <div class="homepage owl-carousel">
-
-
-               {% for rs in sliderdata %}
-                <div class="item">
-                  <div class="row">
-                    <div class="col-md-7 text-center"><img src="{{ rs.image.url }}" alt="" class="img-fluid"></div>
-                    <div class="col-md-5">
-                      <h2>{{ rs.title }} </h2>
-                      <ul class="list-unstyled">
-                        <li>{{ rs.description }}</li>
-                          <a href="/place/{{ rs.id }}/{{ rs.slug }}" class="btn btn-template-main"> Go to detail page  </a>
-                      </ul>
-                    </div>
-                  </div>
+                <div class="homepage owl-carousel">
+                    {% for rs in sliderdata %}
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-7 text-center"><img src="{{ rs.image.url }}" alt="" class="img-fluid"></div>
+                                <div class="col-md-5">
+                                    <h2>{{ rs.title }} </h2>
+                                    <ul class="list-unstyled">
+                                        <li>{{ rs.description }}</li>
+                                        <a href="/place/{{ rs.id }}/{{ rs.slug }}" class="btn btn-template-main"> Go to
+                                            detail page </a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-
-
-              </div>
             </div>
-          </div>
-          <!-- Carousel End-->
         </div>
-      </section>
+        <!-- Carousel End-->
+    </div>
+</section>

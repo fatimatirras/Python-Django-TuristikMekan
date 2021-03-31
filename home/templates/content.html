@@ -1,151 +1,148 @@
- {% load static %}
+{% load static %}
 
-   {% block slider %} {% include 'slider.html' %} {% endblock %}
+{% block slider %} {% include 'slider.html' %} {% endblock %}
 <section class="bar background-white">
-        <div class="container text-center">
-          <div class="row">
-
-
+    <div class="container text-center">
+        <div class="row">
             <div class="col-lg-4 col-md-6">
-              <div class="box-simple">
-                <div class="icon-outlined"><i class="fa fa-desktop"></i></div>
-                <h3 class="h4">Webdesign</h3>
-                <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl Moved life us beast good yielding. Have bring.</p>
-              </div>
-            </div>
-
-
-            <div class="col-lg-4 col-md-6">
-              <div class="box-simple">
-                <div class="icon-outlined"><i class="fa fa-print"></i></div>
-                <h3 class="h4">Print</h3>
-                <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is justice. Six draw you him full not mean evil. Prepare garrets it expense windows shewing do an.</p>
-              </div>
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-desktop"></i></div>
+                    <h3 class="h4">Webdesign</h3>
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl
+                        Moved life us beast good yielding. Have bring.</p>
+                </div>
             </div>
             <div class="col-lg-4 col-md-6">
-              <div class="box-simple">
-                <div class="icon-outlined"><i class="fa fa-globe"></i></div>
-                <h3 class="h4">SEO and SEM</h3>
-                <p>Am terminated it excellence invitation projection as. She graceful shy believed distance use nay. Lively is people so basket ladies window expect.</p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-md-6">
-              <div class="box-simple">
-                <div class="icon-outlined"><i class="fa fa-lightbulb-o"></i></div>
-                <h3 class="h4">Consulting</h3>
-                <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl Moved life us beast good yielding. Have bring.</p>
-              </div>
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-print"></i></div>
+                    <h3 class="h4">Print</h3>
+                    <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is
+                        justice. Six draw you him full not mean evil. Prepare garrets it expense windows shewing do
+                        an.</p>
+                </div>
             </div>
             <div class="col-lg-4 col-md-6">
-              <div class="box-simple">
-                <div class="icon-outlined"><i class="fa fa-envelope-o"></i></div>
-                <h3 class="h4">Email Marketing</h3>
-                <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is justice. Six draw you him full not mean evil. Prepare garrets it expense windows shewing do an.</p>
-              </div>
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-globe"></i></div>
+                    <h3 class="h4">SEO and SEM</h3>
+                    <p>Am terminated it excellence invitation projection as. She graceful shy believed distance use nay.
+                        Lively is people so basket ladies window expect.</p>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="box-simple">
-                <div class="icon-outlined"><i class="fa fa-user"></i></div>
-                <h3 class="h4">UX</h3>
-                <p>Am terminated it excellence invitation projection as. She graceful shy believed distance use nay. Lively is people so basket ladies window expect.</p>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
-
-
-
-      <section class="bar background-pentagon no-mb text-md-center">
-        <div class="container">
-          <div class="heading text-center">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-lightbulb-o"></i></div>
+                    <h3 class="h4">Consulting</h3>
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl
+                        Moved life us beast good yielding. Have bring.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-envelope-o"></i></div>
+                    <h3 class="h4">Email Marketing</h3>
+                    <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is
+                        justice. Six draw you him full not mean evil. Prepare garrets it expense windows shewing do
+                        an.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-user"></i></div>
+                    <h3 class="h4">UX</h3>
+                    <p>Am terminated it excellence invitation projection as. She graceful shy believed distance use nay.
+                        Lively is people so basket ladies window expect.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bar background-pentagon no-mb text-md-center">
+    <div class="container">
+        <div class="heading text-center">
             <h2>Touristic Places</h2>
-          </div>
-          <p class="lead">If you're looking to start your own checklist of places to visit during your life, begin with our list of the top tourist attractions in the world.</p>
-          <!-- Carousel Start-->
-          <ul class="owl-carousel testimonials list-unstyled equal-height">
-
-
+        </div>
+        <p class="lead">If you're looking to start your own checklist of places to visit during your life, begin with
+            our list of the top tourist attractions in the world.</p>
+        <!-- Carousel Start-->
+        <ul class="owl-carousel testimonials list-unstyled equal-height">
             {% for rs in randomplaces %}
-            <li class="item">
-              <div class="testimonial d-flex flex-wrap">
-                <div class="text">
-                  <p>{{ rs.description}}</p>
-                </div>
-                <div class="bottom d-flex align-items-center justify-content-between align-self-end">
+                <li class="item">
+                    <div class="testimonial d-flex flex-wrap">
+                        <div class="text">
+                            <p>{{ rs.description }}</p>
+                        </div>
+                        <div class="bottom d-flex align-items-center justify-content-between align-self-end">
 
-                  <div class="testimonial-info d-flex">
-                    <div class="title">
-                        <h5><a href="/place/{{ rs.id }}/{{ rs.slug }}"> {{ rs.title }} </a></h5>
-                      <p>{{ rs.city }}</p>
+                            <div class="testimonial-info d-flex">
+                                <div class="title">
+                                    <h5><a href="/place/{{ rs.id }}/{{ rs.slug }}"> {{ rs.title }} </a></h5>
+                                    <p>{{ rs.city }}</p>
+                                </div>
+                                <div class="avatar"><img alt="" src="{{ rs.image.url }}" class="img-fluid"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="avatar"><img alt=""  src="{{ rs.image.url }}" class="img-fluid"></div>
-                  </div>
-                </div>
-              </div>
-            </li>
+                </li>
             {% endfor %}
-
-          </ul>
-          <!-- Carousel End-->
-        </div>
-      </section>
-
-
-
-      <section style="background: url({% static 'img/kapa.jpg'%}) center top no-repeat; background-size: cover;" class="bar no-mb color-white text-center bg-fixed relative-positioned">
-        <div class="dark-mask"></div>
-        <div class="container">
-          <div class="icon icon-outlined icon-lg"><i class="fa fa-file-code-o"></i></div>
-          <h3 class="text-uppercase">Do you want to see more?</h3>
-          <p class="lead">We have prepared for you more than 40 different HTML pages, including 5 variations of homepage.</p>
-          <p class="text-center"><a href="index2.html" class="btn btn-template-outlined-white btn-lg">See another homepage</a></p>
-        </div>
-      </section>
-
-
-      <section class="bg-white bar">
-        <div class="container">
-          <div class="heading text-center">
+        </ul>
+        <!-- Carousel End-->
+    </div>
+</section>
+<section style="background: url({% static 'img/kapa.jpg' %}) center top no-repeat; background-size: cover;"
+         class="bar no-mb color-white text-center bg-fixed relative-positioned">
+    <div class="dark-mask"></div>
+    <div class="container">
+        <div class="icon icon-outlined icon-lg"><i class="fa fa-file-code-o"></i></div>
+        <h3 class="text-uppercase">Do you want to see more?</h3>
+        <p class="lead">We have prepared for you more than 40 different HTML pages, including 5 variations of
+            homepage.</p>
+        <p class="text-center"><a href="index2.html" class="btn btn-template-outlined-white btn-lg">See another
+            homepage</a></p>
+    </div>
+</section>
+<section class="bg-white bar">
+    <div class="container">
+        <div class="heading text-center">
             <h2>Category Places</h2>
-          </div>
-          <p class="lead"> The most beautiful places recommended for you. <a href="blog.html">Check our blog</a></p>
-          <div class="row">
-
+        </div>
+        <p class="lead"> The most beautiful places recommended for you. <a href="blog.html">Check our blog</a></p>
+        <div class="row">
             {% for rs in popularplaces %}
-            <div class="col-lg-3">
-              <div class="home-blog-post">
-                <div class="image"><img src="{{ rs.image.url }}" style="height: 200px"  alt="..." class="img-fluid">
-                  <div class="overlay d-flex align-items-center justify-content-center"><a href="/place/{{ rs.id }}/{{ rs.slug }}" class="btn btn-template-outlined-white"><i class="fa fa-chain"> </i> View Detail</a></div>
+                <div class="col-lg-3">
+                    <div class="home-blog-post">
+                        <div class="image"><img src="{{ rs.image.url }}" style="height: 200px" alt="..."
+                                                class="img-fluid">
+                            <div class="overlay d-flex align-items-center justify-content-center"><a
+                                    href="/place/{{ rs.id }}/{{ rs.slug }}" class="btn btn-template-outlined-white"><i
+                                    class="fa fa-chain"> </i> View Detail</a></div>
+                        </div>
+                        <div class="text">
+                            <h4><a href="#">{{ rs.title }} </a></h4>
+                            <p class="intro">{{ rs.description }}.</p><a href="/place/{{ rs.id }}/{{ rs.slug }}"
+                                                                         class="btn btn-template-outlined">View
+                            Detail</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="text">
-                  <h4><a href="#">{{ rs.title }} </a></h4>
-                  <p class="intro">{{ rs.description }}.</p><a href="/place/{{ rs.id }}/{{ rs.slug }}" class="btn btn-template-outlined">View Detail</a>
-                </div>
-              </div>
-            </div>
             {% endfor %}
-
-          </div>
         </div>
-      </section>
-
-
-
-      <section class="bar bg-gray">
-        <div class="container">
-          <div class="heading text-center">
+    </div>
+</section>
+<section class="bar bg-gray">
+    <div class="container">
+        <div class="heading text-center">
             <h2>Our Clients</h2>
-          </div>
-          <ul class="list-unstyled owl-carousel customers no-mb">
-            <li class="item"><img src="{% static 'img/customer-1.png'%}" alt="" class="img-fluid"></li>
-            <li class="item"><img src="{% static 'img/customer-2.png'%}" alt="" class="img-fluid"></li>
-            <li class="item"><img src="{% static 'img/customer-3.png'%}" alt="" class="img-fluid"></li>
-            <li class="item"><img src="{% static 'img/customer-4.png'%}" alt="" class="img-fluid"></li>
-            <li class="item"><img src="{% static 'img/customer-5.png'%}" alt="" class="img-fluid"></li>
-            <li class="item"><img src="{% static 'img/customer-6.png'%}" alt="" class="img-fluid"></li>
-          </ul>
         </div>
-      </section>
+        <ul class="list-unstyled owl-carousel customers no-mb">
+            <li class="item"><img src="{% static 'img/customer-1.png' %}" alt="" class="img-fluid"></li>
+            <li class="item"><img src="{% static 'img/customer-2.png' %}" alt="" class="img-fluid"></li>
+            <li class="item"><img src="{% static 'img/customer-3.png' %}" alt="" class="img-fluid"></li>
+            <li class="item"><img src="{% static 'img/customer-4.png' %}" alt="" class="img-fluid"></li>
+            <li class="item"><img src="{% static 'img/customer-5.png' %}" alt="" class="img-fluid"></li>
+            <li class="item"><img src="{% static 'img/customer-6.png' %}" alt="" class="img-fluid"></li>
+        </ul>
+    </div>
+</section>

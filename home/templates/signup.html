@@ -5,7 +5,7 @@
 {% block description %} {{ setting.description }} {% endblock %}
 
 {% block head %}
-    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
 {% endblock %}
 
 
@@ -15,79 +15,53 @@
 
 {% block content %}
 
- <div id="heading-breadcrumbs">
+    <div id="heading-breadcrumbs">
         <div class="container">
-          <div class="row d-flex align-items-center flex-wrap">
-            <div class="col-md-7">
-              <h1 class="h2">New Account / Login</h1>
+            <div class="row d-flex align-items-center flex-wrap">
+                <div class="col-md-7">
+                    <h1 class="h2">New Account </h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb d-flex justify-content-end">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">New Account</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-5">
-              <ul class="breadcrumb d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">New Account / Login</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
-
-
-      <div id="content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="box">
-                <h2 class="text-uppercase">New account</h2>
-                <p class="lead">Not our registered customer yet?</p>
-                <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                <p class="text-muted">If you have any questions, please feel free to <a href="/contact">contact us</a>, our customer service center is working for you 24/7.</p>
-
-                              {% if messages %}
-                     {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}" role="alert">
-                          {{ message }}
-                         </div>
-                     {% endfor %}
-                   {% endif %}
-
-                <hr>
-
-                <form section="" method="post">
-                    {% csrf_token %}
-                  <div class="form-group">
-                    <label for="firstname">First Name</label>
-                    <input id="firstname" name="firstname" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="lastname">Last Name</label>
-                    <input id="lastname" name="lastname" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" class="form-control">
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-user-md"></i> Register</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-          </div>
+    </div>
+    <div class="col-md-6 mx-auto">
+        <div class="modal-header">
+            <h5 class="modal-title">New account</h5>
         </div>
-      </div>
-
-
-
-
-
-
-
-
+        <div class="modal-body">
+            <p class="lead">Not our registered customer yet?</p>
+            <p class="text-muted">If you have any questions, please feel free to <a href="/contactus">contact us</a>,
+                our customer service center is working for you 24/7.</p>
+            </hr>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                    <div class="form-group">
+                        {{ field }}
+                    </div>
+                    {% if field.help_text %}
+                        <small style="color: gray">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                    </p>
+                {% endfor %}
+                <p class="text-center">
+                    <button class="btn btn-primary" type="submit" value="Login"><i class="fa fa-user-plus"></i> Register
+                    </button>
+                </p>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
 
