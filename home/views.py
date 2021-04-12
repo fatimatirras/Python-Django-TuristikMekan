@@ -150,10 +150,10 @@ def signup_view(request):
             current_user = request.user
             data = UserProfile()
             data.user_id = current_user.id
-            data.image = "image/users/user.png"
+            data.image = "images/users/user.png"
             data.save()
-            messages.success(request, "welcome " + current_user.first_name)
-            return HttpResponseRedirect('/user/update/')
+            messages.success(request, "Hoş geldiniz " + current_user.first_name)
+            return HttpResponseRedirect('/')
 
     form = SignUpForm()
     category = Category.objects.all()
