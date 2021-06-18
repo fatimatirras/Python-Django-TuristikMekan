@@ -33,6 +33,9 @@ urlpatterns = [
     path('aboutus/', views.aboutus, name='aboutus'),
     path('references/', views.references, name='references'),
     path('category/<int:id>/<slug:slug>/', views.category_places, name='category_places'),
+
+    path('category/<int:id>/<slug:slug>/', views.category_userplaces, name='category_userplaces'),
+
     path('place/<int:id>/<slug:slug>/', views.place_detail, name='place_detail'),
     path('search/', views.place_search, name='place_search'),
     path('search_auto/', views.place_search_auto, name='place_search_auto'),

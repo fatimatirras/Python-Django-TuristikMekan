@@ -73,8 +73,16 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['subject', 'comment', 'place', 'user', 'status']
     list_filter = ['status']
 
+
+
+
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Place, PlaceAdmin)
 admin.site.register(Images, ImagesAdmin)
 admin.site.register(Comment, CommentAdmin)
+
+
+
+
+
 

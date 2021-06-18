@@ -19,6 +19,7 @@ urlpatterns = [
     path('contentdelete/<int:id>', views.contentdelete, name='contentdelete'),
     path('contentaddimge/<int:id>', views.contentaddimge, name='contentaddimge'),
 
+    path('contentimagedelete/<int:id>', views.contentimagedelete, name='contentimagedelete'),
 
 
    # path('addcomment/<int:id>', views.addcomment, name='addcomment')

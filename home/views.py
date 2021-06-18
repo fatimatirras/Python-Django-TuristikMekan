@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from content.models import Menu, Content, CImages
+from content.models import Menu, Content, CImages, UserPlaces
 from home.forms import SignUpForm
 from home.models import Setting, ContactFormMessage, ContactFormu, FAQ, UserProfile
 from place.models import Place, Category, Images, Comment
@@ -73,6 +73,7 @@ def category_places(request, id, slug):
     category = Category.objects.all()
     context = {'setting': setting, 'places': places, 'category': category, 'categorydata': categorydata, }
     return render(request, 'places.html', context)
+
 
 def place_detail(request, id, slug):
     category = Category.objects.all()
@@ -202,3 +203,11 @@ def contentdetail(request,id, slug):
               }
 
     return render(request, 'content_detail.html', context)
+#################################################################
+def category_userplaces(request, id, slug):
+    setting = Setting.objects.get(pk=1)
+    categorydata = Category.objects.get(pk=id)
+    userplaces = UserPlaces.objects.filter(category_id=id, status='True')
+    category = Category.objects.all()
+    context = {'setting': setting, 'userplaces': userplaces, 'category': category, 'categorydata': categorydata, }
+    return render(request, 'places.html', context)

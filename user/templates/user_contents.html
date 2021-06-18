@@ -60,7 +60,7 @@
                     <th>Image</th>
                     <th>Title</th>
                     <th>Type</th>
-                    <th>Menu</th>
+                    <th>Category</th>
                     <th>Status</th>
                     <th>Gallery</th>
                     <th>Date</th>
@@ -69,12 +69,12 @@
                 </tr>
                 </thead>
                   <tbody>
-                            {% for rs in contents %}
+                            {% for rs in place %}
                                 <tr>
                                     <td ><img src="{{ rs.image.url }}" style="height: 30px;"></td>
-                                    <td><a href="/content/{{ user.id }}/{{ rs.slug }}"> {{ rs.title }}</a></td>
+                                    <td><a href="/place/{{ user.id }}/{{ rs.slug }}"> {{ rs.title }}</a></td>
                                     <td>{{ rs.type }}</td>
-                                    <td>{{ rs.menu.title }}</td>
+                                    <td>{{ rs.category.title }}</td>
                                     <td>{{ rs.status }}</td>
                                      <td><a href="javascript:;" onclick="window.open('/user/contentaddimge/{{ rs.id }}','gallery','height=600,width=800,top=50,left=150')">
                                           <img style="height: 40px; width: 40px" src="{% static '' %}img/gallery.png"> </a> </td>
