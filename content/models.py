@@ -1,23 +1,30 @@
+from lib2to3.fixes.fix_idioms import TYPE
+
+from ckeditor.widgets import CKEditorWidget
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from django.forms import ModelForm, TextInput, Select
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
+
+from place.models import Comment
 
 
 class Menu(MPTTModel):
 
     STATUS = (
         ('True', 'Evet'),
-        ('False', 'Hayır')
+        ('False', 'Hayır'),
     )
 
     parent = TreeForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     title = models.CharField(max_length=100, unique=True)
-    link = models.CharField(max_length=100, unique=True)
+    link = models.CharField(max_length=100, unique=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -36,17 +43,17 @@ class Menu(MPTTModel):
 
 class Content(models.Model):
     TYPE = (
-        ('etkinlik', 'etkinlik'),
-        ('haber', 'haber'),
+
         ('menu', 'menu'),
         ('place', 'place'),
-        ('duyuru', 'duyuru'),
 
     )
     STATUS = (
         ('True', 'Evet'),
-        ('False', 'Hayır')
+        ('False', 'Hayır'),
     )
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
     menu = models.OneToOneField(Menu, null=True, blank=True, on_delete=models.CASCADE)
     type = models.CharField(max_length=10, choices=TYPE)
     title = models.CharField(max_length=150)
@@ -54,7 +61,7 @@ class Content(models.Model):
     description = models.CharField(blank=True, max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     detail = RichTextUploadingField()
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(blank=False, unique=True)
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -81,3 +88,23 @@ class CImages(models.Model):
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
+
+class ContentForm(ModelForm):
+    class Meta:
+        model = Content
+        fields = ['type', 'title', 'slug', 'keywords', 'description', 'image', 'detail']
+        widgets = {
+            'title'   :TextInput(attrs={'style': 'width: 830px', 'class': 'input', 'placeholder': 'title'}),
+            'slug'    : TextInput(attrs={'style': 'width: 830px', 'class': 'input', 'placeholder': 'slug'}),
+            'keywords': TextInput(attrs={'style': 'width: 830px', 'class': 'input', 'placeholder': 'keywords'}),
+            'description': TextInput(attrs={'style': 'width: 830px', 'class': 'input', 'placeholder': 'description'}),
+            'type'    : Select(attrs={'style': 'width: 830px', 'class': 'input', 'placeholder': 'city'}, choices=TYPE),
+            'detail'  : CKEditorWidget(),
+        }
+
+
+class ContentImageForm(ModelForm):
+    class Meta:
+        model = CImages
+        fields = ['title', 'image']
+

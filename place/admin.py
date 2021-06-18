@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
+
 from place.models import Category, Place, Images, Comment
 
 
@@ -76,3 +77,4 @@ admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Place, PlaceAdmin)
 admin.site.register(Images, ImagesAdmin)
 admin.site.register(Comment, CommentAdmin)
+

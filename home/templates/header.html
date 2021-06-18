@@ -43,6 +43,44 @@
                             </ul>
                         </li>
                     {% endrecursetree %}
+
+
+                <!-- menu yu ana sayfada göstermek************************************************************ -->
+                {% if menu %}
+                 {% recursetree menu %}
+                        <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown"
+                                                                    class="dropdown-toggle">{{ node.title }} <b
+                                class="caret"></b></a>
+                            <ul class="dropdown-menu megamenu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-lg-6"><img src="{{ images.image.url }}" alt=""
+                                                                   class="img-fluid d-none d-lg-block"></div>
+                                        <div class="col-lg-3 col-md-6">
+                                            {% if not node.is_leaf_node %}
+                                                {% for i in node.children.all %}
+                                                    <ul class="list-unstyled mb-3">
+                                                    <li><a class="nav-link"
+                                                           href="/menu/{{ i.id }}">{{ i.title }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %}
+
+
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endrecursetree %}
+                {% endif %}
+
+   <!-- menu yu ana sayfada göstermek******************************************************************** -->
+
+
+
                     <!-- ========== FULL WIDTH MEGAMENU ==================-->
                     <li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown"
                                                      class="dropdown-toggle">Pages <b class="caret"></b></a>
@@ -54,10 +92,7 @@
                             <li class="dropdown-item"><a href="/sss" class="nav-link">Faq</a></li>
                         </ul>
                     </li>
-                    <!-- ========== FULL WIDTH MEGAMENU END ==================-->
-                    <!-- ========== Contact dropdown ==================-->
-                    <li class="nav-item dropdown"><a href="/contact">Contact <b class="caret"></b></a>
-                    </li>
+
                     <!-- ========== Contact dropdown end ==================-->
                 </ul>
             </div>

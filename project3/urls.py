@@ -41,6 +41,11 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup_view'),
     path('sss/', views.faq, name='faq'),
 
+    path('content/<int:id>/<slug:slug>/', views.contentdetail, name='contentdetail'),
+    path('menu/<int:id>', views.menu, name='menu'),
+
+
+
 
 ]
 

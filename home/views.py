@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from content.models import Menu, Content, CImages
 from home.forms import SignUpForm
 from home.models import Setting, ContactFormMessage, ContactFormu, FAQ, UserProfile
 from place.models import Place, Category, Images, Comment
@@ -16,16 +17,17 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Place.objects.all()[:4]
     category = Category.objects.all()
+    menu = Menu.objects.all()
     popularplaces = Place.objects.all()[:4]
     lastplaces = Place.objects.all().order_by('-id')[:10]
     randomplaces = Place.objects.all().order_by('?')[:12]
 
-
-
-    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderdata':sliderdata,
+    context = {'setting': setting, 'category': category, 'menu': menu, 'page': 'home', 'sliderdata':sliderdata,
                'popularplaces': popularplaces,
                'lastplaces': lastplaces,
-               'randomplaces': randomplaces, }
+               'randomplaces': randomplaces,
+
+               }
     return render(request, 'index.html', context)
 
 
@@ -172,3 +174,31 @@ def faq(request):
     setting = Setting.objects.get(pk=1)
     context = {'faq': faq, 'category': category, 'setting': setting}
     return render(request, 'faq.html', context)
+
+def menu(request, id):
+    content = Content.objects.get(menu_id=id)
+    if content:
+        link='/content/'+str(content.id)+'/menu'
+        return HttpResponseRedirect(link)
+
+    else:
+        messages.warning(request, "hata ! ilgili içerik bulunamadı")
+        link='/'
+        return HttpResponseRedirect(link)
+
+
+def contentdetail(request,id, slug):
+    category = Category.objects.all()
+    menu = Menu.objects.all()
+    content = Content.objects.get(pk=id)
+    images = CImages.objects.filter(content_id=id)
+    comments = Comment.objects.filter(place_id=id, status='True')
+    context = {'content': content,
+               'category': category,
+               'menu': menu,
+               'images': images,
+               'comments': comments,
+
+              }
+
+    return render(request, 'content_detail.html', context)
